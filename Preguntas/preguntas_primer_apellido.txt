@@ -1,0 +1,11 @@
+¿Cuál es su primer apellido?
+¿Cómo se apellida?
+¿Cómo se llama de segundo nombre?
+¿Cómo se conoce a su familia?
+¿Cómo se conoce a la familia de su padre?
+¿Cuál es el apellido de su padre?
+¿Cuál es el nombre de su familia?
+¿Cuál es el nombre de la familia de su padre?
+¿Cuál es su segundo nombre?
+¿Qué apellido tiene como primer apellido?
+¿Qué apellido tiene la familia de su padre?
