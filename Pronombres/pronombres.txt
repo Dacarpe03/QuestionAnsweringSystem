@@ -1,0 +1,7 @@
+cómo:cómo
+cuál:cuál,cuáles
+cuándo:cuándo
+cuánto:cuánto,cuánta,cuántos,cuántas
+dónde:dónde
+qué:qué
+quién:quién,quiénes
