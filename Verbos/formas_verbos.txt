@@ -9,7 +9,7 @@ criar:criar,cria,crió,criado
 cursar:cursar,cursa,cursó,cursado
 dar:dar,da,dió,dieron,dado
 descender:descender,deciende,descendió,descendido
-encontrar:encontrar:encuentra,encontró,encontrado
+encontrar:encontrar,encuentra,encontró,encontrado
 estudiar:estudiar,estudia,estudió,estudiado
 fallecer:fallecer,fallece,falleció,fallecido
 ir:ir,va,fue,ido
