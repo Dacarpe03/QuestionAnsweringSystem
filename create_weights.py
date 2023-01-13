@@ -63,7 +63,7 @@ def main():
     
     print_weights(weights_dictionary)
     df = pd.DataFrame(weights_dictionary)
-    df.to_csv(WEIGHTS_RESULTS_CSV)
+    df.to_csv(WEIGHTS_RESULTS_CSV, index=False)
     
 
 def create_verb_files():
