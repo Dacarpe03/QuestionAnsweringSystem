@@ -1,5 +1,5 @@
 nombre:aparecer,llamar,bautizar,dar,tener
-primer_apellido:tener,llamar,conocer
+primer_apellido:tener,apellidar,llamar,conocer
 segundo_apellido:tener,llamar,conocer,ir
 lugar_de_nacimiento:nacer,dar
 dia_de_nacimiento:nacer
@@ -17,6 +17,6 @@ pareja_actual:tener,llamar,mantener
 numero_de_hijos:tener
 nombre_del_padre:tener,llamar
 nombre_de_la_madre:tener,nacer,llamar
-universidad:cursar,estudiar,llamar
+universidad:cursar,asistir,estudiar,llamar
 carrera_universitaria:tener,estudiar,llamar
 puestos_empresariales:trabajar,ocupar,tener
