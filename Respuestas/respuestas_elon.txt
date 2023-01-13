@@ -1,0 +1,22 @@
+nombre:Elon
+primer_apellido:Musk
+segundo_apellido:Reeve
+lugar_de_nacimiento:Sudáfrica
+dia_de_nacimiento:28
+mes_de_nacimiento:Junio
+anno_de_nacimiento:1971
+fecha_de_nacimiento:28-06-1971
+edad:51
+dia_de_fallecimiento:0
+mes_de_fallecimiento:Ninguno
+anno_de_fallecimiento:0
+fecha_de_fallecimiento:00-00-0000
+marido:No
+esposa:Justine Wilson, Talulah Riley
+pareja_actual:Grimes
+numero_de_hijos:10
+nombre_del_padre:Errol
+nombre_de_la_madre:Maye
+universidad:Pretoria,Queens,Pennsylvania
+carrera_universitaria:Física,Economía
+puestos_empresariales:Fundador y CEO y jefe ingeniero de SpaceX,CEO y arquitecto de producto en Tesla,CEO de Twitter,Presidente la Fundación Musk,Founder of The Boring Company,Co-fundador gde Neurallink,Cofundador of OpenAI,Cofundador de Zip2

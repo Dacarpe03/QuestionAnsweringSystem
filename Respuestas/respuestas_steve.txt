@@ -1,0 +1,22 @@
+nombre:Steve
+primer_apellido:Jobs
+segundo_apellido:Hagopian
+lugar_de_nacimiento:Estados Unidos
+dia_de_nacimiento:24
+mes_de_nacimiento:Febrero
+anno_de_nacimiento:1955
+fecha_de_nacimiento:24-02-1955
+edad:56
+dia_de_fallecimiento:5
+mes_de_fallecimiento:Octubre
+anno_de_fallecimiento:2011
+fecha_de_fallecimiento:05-11-2011
+marido:No
+esposa:Laurene Powell,Chrissan Brennan
+pareja_actual:No
+numero_de_hijos:4
+nombre_del_padre:Paul
+nombre_de_la_madre:Clara
+universidad:Reed,Portland,Oregón
+carrera_universitaria:Ninguna
+puestos_empresariales:Cofundador de Apple,Cofundador de Pixar,Empleador Apple y Pixar y NeXT y Atari,Creador de Apple I y Apple Lisa y iMac y iPod y iPhone y iPad y Mac OS X v10.0 y NEXTSTEP y iTunes y App Store
