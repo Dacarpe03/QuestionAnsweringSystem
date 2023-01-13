@@ -14,10 +14,12 @@ VERBS_PREFIX = "Verbos/"
 LISTA_VERBOS_PREFIX = "lista_verbos_por_dimension"
 VERBS_FORMS_FILE = f"{VERBS_PREFIX}formas_verbos.txt"
 VERBS_PER_DIMENSION_FILE = f"{VERBS_PREFIX}lista_verbos_por_dimension.txt"
+VERBS_WEIGHT = 2
 
 KEYWORDS_PREFIX = "PalabrasClave/"
 KEYWORDS_FORMS_FILE = f"{KEYWORDS_PREFIX}formas_palabras_clave.txt"
 KEYWORDS_PER_DIMENSION_FILE = f"{KEYWORDS_PREFIX}lista_palabras_clave_por_dimension.txt"
+KEYWORDS_WEIGHT = 5
 
 WEIGHTS_RESULTS_CSV = "weights.csv"
 DIMENSIONS = ["nombre",
@@ -57,6 +59,7 @@ def main():
     calculate_verb_weights(weights_dictionary)
     
     create_keywords_files()
+    calculate_keywords_weights(weights_dictionary)
     
     print_weights(weights_dictionary)
     df = pd.DataFrame(weights_dictionary)
@@ -66,7 +69,7 @@ def main():
 def create_verb_files():
     verbs_dictionary = get_dictionary(VERBS_FORMS_FILE)
     fname = VERBS_PER_DIMENSION_FILE
-    with open(fname, "w") as verb_file:
+    with open(fname, "w", encoding="utf-8") as verb_file:
         for dimension_name in DIMENSIONS:
             dimension_questions = load_questions(dimension_name)
             line = dimension_name + ":"
@@ -82,7 +85,7 @@ def create_verb_files():
 def create_keywords_files():
     keywords_dictionary = get_dictionary(KEYWORDS_FORMS_FILE)
     fname = KEYWORDS_PER_DIMENSION_FILE
-    with open(fname, "w") as keywords_file:
+    with open(fname, "w", encoding="utf-8") as keywords_file:
         for dimension_name in DIMENSIONS:
             dimension_questions = load_questions(dimension_name)
             line = dimension_name + ":"
@@ -100,7 +103,6 @@ def get_dictionary(dictionary_file_name):
     my_dict = {}
     with open(dictionary_file_name, "r", encoding="utf-8") as pron_file:
         for pron in pron_file.readlines():
-            print(pron)
             if pron != "\n":
                 pron = pron.replace("\n","")
                 key, values = pron.split(":")
@@ -140,6 +142,19 @@ def calculate_verb_weights(weights_dict):
                 weights_dict[dimension].append(2)
             else:
                 weights_dict[dimension].append(0)
+
+
+def calculate_keywords_weights(weights_dict):
+    keywords_form_dict = get_dictionary(KEYWORDS_FORMS_FILE)
+    keywords_per_dimension = get_dictionary(KEYWORDS_PER_DIMENSION_FILE)
+    for keyword in keywords_form_dict.keys():
+        weights_dict["palabra"].append(keyword)
+        for dimension in DIMENSIONS:
+            if keyword in keywords_per_dimension[dimension]:
+                weights_dict[dimension].append(5)
+            else:
+                weights_dict[dimension].append(0)
+                
                 
 def check_word_in_question(question, word_key, word_dict):
     question_processed = clear_question(question)
@@ -182,7 +197,7 @@ def print_weights(weights_dict):
 
 def print_verbs(verbs_forms_dict):
     fname = VERBS_PER_DIMENSION_FILE
-    with open(fname, "r") as verb_file:
+    with open(fname, "r", encoding="utf-8") as verb_file:
         for line in verb_file.readlines():
             dimension, verbs = line.split(":")
             dimension = dimension.replace("_", "\\_")
@@ -190,9 +205,25 @@ def print_verbs(verbs_forms_dict):
             print("\\begin{itemize}")
             for v in verbs.replace("\n","").split(","):
                 lista = "``" + "'',``".join(verbs_forms_dict[v]) + "''"
-                print(f"    \\item \\textbf{{{v}}}, comprobando {lista}")
+                print(f"    \\item \\textbf{{{v}}}, comprobando {lista}.")
+            print("\\end{itemize}")
+            
+            
+def print_keywords(keywords_forms_dict):
+    fname = KEYWORDS_PER_DIMENSION_FILE
+    with open(fname, "r", encoding="utf-8") as keyword_file:
+        for line in keyword_file.readlines():
+            dimension, keywords = line.split(":")
+            dimension = dimension.replace("_", "\\_")
+            print(f"Las palabras clave para la dimensión \\textbf{{{dimension}}} son:")
+            print("\\begin{itemize}")
+            for k in keywords.replace("\n","").split(","):
+                lista = "``" + "'',``".join(keywords_forms_dict[k]) + "''"
+                print(f"    \\item \\textbf{{{k}}}, incluyendo {lista}.")
             print("\\end{itemize}")
             
 if __name__ == "__main__":
     main()
     print_verbs(get_dictionary(VERBS_FORMS_FILE))
+    print()
+    print_keywords(get_dictionary(KEYWORDS_FORMS_FILE))

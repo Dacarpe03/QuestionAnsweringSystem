@@ -1,6 +1,6 @@
 aparecer:aparecer,aparece,apareció,aparecido
 apellidar:apellidar,apellida,apedilló,apedillaba,apedillado
-asistir:asistir,asiste,asistió,asestido
+asistir:asistir,asiste,asistió,asistido
 bautizar:bautizar,bautizó,bautizaron,bautizado
 casar:casar,casa,casó,casado
 conocer:conocer,conoce,conoció,conocido
