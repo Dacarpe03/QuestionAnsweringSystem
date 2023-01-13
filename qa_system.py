@@ -35,13 +35,13 @@ DIMENSIONS = ["nombre",
 
 def main():
     pronouns_dict = get_dictionary(PRONOUNS_FILE)
-    print(pronouns_dict)
+    
     weights_dictionary = create_weights_dictionary(pronouns_dict)
     
     calculate_pronoun_weights(weights_dictionary, 
                               pronouns_dict)
     
-    print(weights_dictionary)
+    print_weights(weights_dictionary)
     df = pd.DataFrame(weights_dictionary)
     df.to_csv('prueba.csv')
     
@@ -89,6 +89,7 @@ def check_question_pronoun(question, pronoun_key, pronouns_dict):
             return True
     return False
     
+
 def load_questions(dimension_name):
     question_filename = f"{QUESTIONS_PREFIX}{dimension_name}.txt"
     lines = []
@@ -96,6 +97,19 @@ def load_questions(dimension_name):
         lines = questions.readlines()
     return lines
 
+
+def print_weights(weights_dict):
+    my_keys = weights_dict.keys()
+    n = len(weights_dict["palabra"])
+    for k in my_keys:
+        row = f"{k}"
+        for i in range(0,n):
+            if k != "palabra":
+                row += " & " + "{:.3f}".format(weights_dict[k][i])
+            else:
+                row += " & " + weights_dict[k][i]
+        row += "\\\\ \\hline"
+        print(row.replace("_", "\\_"))
 
 if __name__ == "__main__":
     main()

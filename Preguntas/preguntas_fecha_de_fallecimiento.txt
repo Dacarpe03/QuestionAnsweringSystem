@@ -2,7 +2,7 @@
 Los parafraseos que hemos detectado son:
 ¿Cuándo fue su fallecimiento?
 ¿Cuándo fue su muerte?
-¿Cuál es la feca de su muerte?
+¿Cuál es la fecha de su muerte?
 ¿Cuál es su fecha de fallecimiento?
 ¿Cuál es la fecha en la que falleció?
 ¿Cuál es la fecha en la que murió?
