@@ -8,6 +8,12 @@ import pandas as pd
 
 QUESTIONS_PREFIX = "Preguntas/preguntas_"
 PRONOUNS_FILE = "Pronombres/pronombres.txt"
+VERBS_PREFIX = "Verbos/"
+LISTA_VERBOS_PREFIX = "lista_verbos_por_dimension"
+VERBS_FORMS_FILE = f"{VERBS_PREFIX}formas_verbos.txt"
+VERBS_PER_DIMENSION_FILE = f"{VERBS_PREFIX}lista_verbos_por_dimension.txt"
+
+WEIGHTS_RESULTS_CSV = "weights.csv"
 DIMENSIONS = ["nombre",
               "primer_apellido",
               "segundo_apellido",
@@ -41,19 +47,39 @@ def main():
     calculate_pronoun_weights(weights_dictionary, 
                               pronouns_dict)
     
+    create_verb_files()
+    calculate_verb_weights(weights_dictionary)
+    
     print_weights(weights_dictionary)
     df = pd.DataFrame(weights_dictionary)
-    df.to_csv('prueba.csv')
+    df.to_csv(WEIGHTS_RESULTS_CSV)
     
 
+def create_verb_files():
+    verbs_dictionary = get_dictionary(VERBS_FORMS_FILE)
+    fname = VERBS_PER_DIMENSION_FILE
+    with open(fname, "w") as verb_file:
+        for dimension_name in DIMENSIONS:
+            dimension_questions = load_questions(dimension_name)
+            line = dimension_name + ":"
+            verbs_found = set()
+            for question in dimension_questions:
+                for verb in verbs_dictionary.keys():
+                    if check_word_in_question(question, verb, verbs_dictionary):
+                        verbs_found.add(verb)
+            line += ",".join(verbs_found)
+            line += "\n"
+            verb_file.write(line)
+    
+    
 def get_dictionary(dictionary_file_name):
-    pronouns_dict = {}
+    my_dict = {}
     with open(dictionary_file_name, "r", encoding="utf-8") as pron_file:
         for pron in pron_file.readlines():
             pron = pron.replace("\n","")
             key, values = pron.split(":")
-            pronouns_dict[key] = values.split(",")
-    return pronouns_dict
+            my_dict[key] = values.split(",")
+    return my_dict
 
 
 def create_weights_dictionary(pronouns_dict):
@@ -72,20 +98,28 @@ def calculate_pronoun_weights(weights_dictionary, pronouns_dict):
             pron_count = 0
             questions_list = load_questions(dimension_name)
             for question in questions_list:
-                if check_question_pronoun(question, pron, pronouns_dict):
+                if check_word_in_question(question, pron, pronouns_dict):
                     pron_count+=1
             weight = pron_count/len(questions_list)
             weights_dictionary[dimension_name].append(weight)
             
 
-def check_question_pronoun(question, pronoun_key, pronouns_dict):
-    question_processed = question.lower()
-    question_processed = question_processed.replace("?","")
-    question_processed = question_processed.replace("¿","")
+def calculate_verb_weights(weights_dict):
+    verbs_form_dict = get_dictionary(VERBS_FORMS_FILE)
+    verbs_per_dimension = get_dictionary(VERBS_PER_DIMENSION_FILE)
+    for verb in verbs_form_dict.keys():
+        weights_dict["palabra"].append(verb)
+        for dimension in DIMENSIONS:
+            if verb in verbs_per_dimension[dimension]:
+                weights_dict[dimension].append(2)
+            else:
+                weights_dict[dimension].append(0)
+                
+def check_word_in_question(question, word_key, word_dict):
+    question_processed = clear_question(question)
     
     for word in question_processed.split(" "):
-        print(word)
-        if word in pronouns_dict[pronoun_key]:
+        if word in word_dict[word_key]:
             return True
     return False
     
@@ -96,6 +130,14 @@ def load_questions(dimension_name):
     with open(question_filename, "r", encoding='utf-8') as questions:
         lines = questions.readlines()
     return lines
+
+
+def clear_question(question):
+    question_processed = question.lower()
+    question_processed = question_processed.replace("?","")
+    question_processed = question_processed.replace("¿","")
+    question_processed = question_processed.replace("\n","")
+    return question_processed
 
 
 def print_weights(weights_dict):
@@ -111,5 +153,19 @@ def print_weights(weights_dict):
         row += "\\\\ \\hline"
         print(row.replace("_", "\\_"))
 
+
+def print_verbs(verbs_dict):
+    fname = f"{VERBS_PREFIX}{LISTA_VERBOS_PREFIX}.txt"
+    with open(fname, "r") as verb_file:
+        for line in verb_file.readlines():
+            dimension, verbs = line.split(":")
+            dimension = dimension.replace("_", "\\_")
+            print(f"Los verbos para la dimensión {dimension} son:")
+            print("\\begin{itemize}")
+            for v in verbs.replace("\n","").split(","):
+                lista = "``" + "'',``".join(verbs_dict[v]) + "''"
+                print(f"    \\item \\textbf{{{v}}}, comprobando {lista}")
+            print("\\end{itemize}")
+            
 if __name__ == "__main__":
     main()
