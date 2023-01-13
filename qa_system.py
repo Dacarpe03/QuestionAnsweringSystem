@@ -10,7 +10,8 @@ QUESTIONS_PREFIX = "Preguntas/preguntas_"
 PRONOUNS_FILE = "Pronombres/pronombres.txt"
 VERBS_PREFIX = "Verbos/"
 LISTA_VERBOS_PREFIX = "lista_verbos_por_dimension"
-VERBS_LIST_FILE = f"{VERBS_PREFIX}formas_verbos.txt"
+VERBS_FORMS_FILE = f"{VERBS_PREFIX}formas_verbos.txt"
+VERBS_PER_DIMENSION_FILE = f"{VERBS_PREFIX}lista_verbos_por_dimension.txt"
 DIMENSIONS = ["nombre",
               "primer_apellido",
               "segundo_apellido",
@@ -45,6 +46,7 @@ def main():
                               pronouns_dict)
     
     create_verb_files()
+    calculate_verb_weights()
     
     print_weights(weights_dictionary)
     df = pd.DataFrame(weights_dictionary)
@@ -52,8 +54,8 @@ def main():
     
 
 def create_verb_files():
-    verbs_dictionary = get_dictionary(VERBS_LIST_FILE)
-    fname = f"{VERBS_PREFIX}{LISTA_VERBOS_PREFIX}.txt"
+    verbs_dictionary = get_dictionary(VERBS_FORMS_FILE)
+    fname = VERBS_PER_DIMENSION_FILE
     with open(fname, "w") as verb_file:
         for dimension_name in DIMENSIONS:
             dimension_questions = load_questions(dimension_name)
@@ -66,6 +68,7 @@ def create_verb_files():
             line += ",".join(verbs_found)
             line += "\n"
             verb_file.write(line)
+    
     
 def get_dictionary(dictionary_file_name):
     my_dict = {}
@@ -99,6 +102,11 @@ def calculate_pronoun_weights(weights_dictionary, pronouns_dict):
             weights_dictionary[dimension_name].append(weight)
             
 
+def calculate_verb_weights(weights_dict):
+    verbs_form_dict = get_dictionary(VERBS_FORMS_FILE)
+    verbs_per_dimension = get_dictionary(VERBS_PER_DIMENSION_FILE)
+    
+    
 def check_word_in_question(question, word_key, word_dict):
     question_processed = clear_question(question)
     
@@ -152,5 +160,4 @@ def print_verbs(verbs_dict):
             print("\\end{itemize}")
             
 if __name__ == "__main__":
-    verbs_dict = get_dictionary(VERBS_LIST_FILE)
-    print_verbs(verbs_dict)
+    main()
