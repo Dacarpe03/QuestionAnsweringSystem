@@ -1,0 +1,12 @@
+¿Qué edad tiene?
+¿Cómo de mayor es?
+¿Cuál es su edad?
+¿Cuán mayor es?
+¿Cuántos años tiene?
+¿Cuántos años han pasado desde su nacimiento?
+¿Cuántos años se ha mantenido con vida?
+¿Cuántos años ha vivido?
+¿Hace cuántos años nació?
+¿Qué tiempo total de vida tiene?
+¿Qué periodo de tiempo ha estado vivo?
+¿Qué número de años tiene?

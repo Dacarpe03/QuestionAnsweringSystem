@@ -1,0 +1,10 @@
+¿Cuál es su segundo apellido?
+¿Cómo se llama de tercer nombre?
+¿Cómo se conoce a la familia de su madre?
+¿Cuál es su último apellido?
+¿Cuál es el apellido de su madre?
+¿Cuál es el apellido que va despu´es del primer apellido?
+¿Cuál es el nombre de la familia de su madre?
+¿Cuál es su tercer nombre?
+¿Qué apellido tiene como segundo apellido?
+¿Qué apellido tiene la familia de su madre?
