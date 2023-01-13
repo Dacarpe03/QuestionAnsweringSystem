@@ -1,11 +1,15 @@
 aparecer:aparecer,aparece,apareció,aparecido
+apellidar:apellidar,apellida,apedilló,apedillaba,apedillado
+asistir:asistir,asiste,asistió,asistido
 bautizar:bautizar,bautizó,bautizaron,bautizado
 casar:casar,casa,casó,casado
 conocer:conocer,conoce,conoció,conocido
 contraer:contraer,contrae,contrajo,contraído
+criar:criar,cria,crió,criado
 cursar:cursar,cursa,cursó,cursado
 dar:dar,da,dió,dieron,dado
 descender:descender,deciende,descendió,descendido
+encontrar:encontrar,encuentra,encontró,encontrado
 estudiar:estudiar,estudia,estudió,estudiado
 fallecer:fallecer,fallece,falleció,fallecido
 ir:ir,va,fue,ido
@@ -15,5 +19,8 @@ morir:morir,muere,murió,muerto
 nacer:nacer,nace,nació,nacido
 ocupar:ocupar,ocupa,ocupó,ocupado
 pasar:pasar,pasa,pasó,pasaron,pasado
+poner:poner,pone,puso,pusieron,puesto
+realizar:realizar,realiza,realizó,realizado
 tener:tener,tiene,tuvo,tenido
 trabajar:trabajar,trabaja,trabajó,trabajado
+vivir:vivir,vive,vivió,vivido
